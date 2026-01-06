@@ -147,6 +147,18 @@ nonisolated public struct OpenAIRealtimeSessionAudioConfiguration: Encodable, Se
         public let noiseReduction: NoiseReduction?
         public let transcription: Transcription?
         public let turnDection: TurnDetection?
+
+        public init(
+            format: AudioFormat,
+            noiseReduction: NoiseReduction? = nil,
+            transcription: Transcription? = nil,
+            turnDection: TurnDetection? = nil
+        ) {
+            self.format = format
+            self.noiseReduction = noiseReduction
+            self.transcription = transcription
+            self.turnDection = turnDection
+        }
     }
 
     nonisolated public enum Voice: Encodable, Sendable {
