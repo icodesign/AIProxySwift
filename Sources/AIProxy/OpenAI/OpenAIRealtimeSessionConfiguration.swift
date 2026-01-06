@@ -21,7 +21,7 @@ nonisolated public struct OpenAIRealtimeSessionAudioConfiguration: Encodable, Se
         case pcmu
         case pcma
         
-        private enum CodingKeys: CodingKey {
+        private enum CodingKeys: String, CodingKey {
             case type
             case rate
         }
@@ -66,7 +66,7 @@ nonisolated public struct OpenAIRealtimeSessionAudioConfiguration: Encodable, Se
             self.prompt = prompt
         }
         
-        private enum CodingKeys: CodingKey {
+        private enum CodingKeys: String, CodingKey {
             case language
             case model
             case prompt
@@ -158,6 +158,13 @@ nonisolated public struct OpenAIRealtimeSessionAudioConfiguration: Encodable, Se
             self.noiseReduction = noiseReduction
             self.transcription = transcription
             self.turnDection = turnDection
+        }
+        
+        private enum CodingKeys: String, CodingKey {
+            case format
+            case noiseReduction = "noise_reduction"
+            case transcription
+            case turnDection = "turn_detection"
         }
     }
 
