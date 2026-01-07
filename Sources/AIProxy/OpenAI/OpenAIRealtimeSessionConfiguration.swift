@@ -44,13 +44,17 @@ nonisolated public struct OpenAIRealtimeSessionAudioConfiguration: Encodable, Se
         case nearField
         case farField
         
+        private enum CodingKeys: String, CodingKey {
+            case type
+        }
+        
         public func encode(to encoder: any Encoder) throws {
-            var container = encoder.singleValueContainer()
+            var container = encoder.container(keyedBy: CodingKeys.self)
             switch self {
             case .nearField:
-                try container.encode("near_field")
+                try container.encode("near_field", forKey: .type)
             case .farField:
-                try container.encode("far_field")
+                try container.encode("far_field", forKey: .type)
             }
         }
     }

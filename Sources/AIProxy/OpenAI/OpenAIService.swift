@@ -252,8 +252,15 @@ import Foundation
         logLevel: AIProxyLogLevel
     ) async throws -> OpenAIRealtimeSession {
         AIProxyLogLevel.callerDesiredLogLevel = logLevel
+        let path: String
+        switch configuration {
+        case .realtime:
+            path = "/v1/realtime?model=\(model)"
+        case .transcription:
+            path = "/v1/realtime?intent=transcription"
+        }
         let request = try await self.requestBuilder.plainGET(
-            path: "/v1/realtime?model=\(model)",
+            path: path,
             secondsToWait: 60,
             additionalHeaders: [:]
         )
